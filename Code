@@ -1,0 +1,177 @@
+
+PImage tree;
+PGraphics pg;
+float r, g, b;
+float X, Y;
+color white = color(255.0, 255.0, 255.0);
+color transparent = color(0, 0);
+void setup() {
+  size(750, 750);
+  background(255);
+  pg = createGraphics(width, height);
+  tree = loadImage("poke3.png");
+  run();
+  tree = loadImage("poke2.png");
+  run2();
+  tree = loadImage("poke1.png");
+  run3();
+
+  tree = loadImage("save1.png");
+  image(tree, 0, 0, width/2, height/2);
+  tree = loadImage("save2.png");
+  image(tree, 175, 375, width/2, height/2);
+  tree = loadImage("save3.png");
+  image(tree, 350, 0, width/2, height/2);
+  save("FINAL.png");
+}
+void run() 
+{
+  pg.beginDraw();
+  image(tree, 0, 0, width, height);
+
+  float totalR = red((tree.pixels[width/2]));
+  float totalG = green((tree.pixels[tree.width]));
+  float totalB = blue((tree.pixels[tree.width]));
+  //PULL PIXEL AVERAGE COLOR RGB
+  int count = 0;
+  for (int i = 0; i < tree.width; i+=1) 
+  {
+    for (int j = 0; j < tree.height; j+=1)
+    {  
+      color c = get(i, j);
+      if (!(c == white))
+      {
+        r = red(c);
+        g = green(c);
+        b = blue(c);
+        totalR = (totalR + r);
+        totalG = (totalG + g);
+        totalB = (totalB + b);
+        count++;
+      }
+    }
+  }
+  totalR = (totalR / count);
+  totalG = (totalG / count);
+  totalB = (totalB / count);
+  color avg = color(totalR + random(25), totalG + random(25), totalB + random(25));
+  println(totalR);
+  println(totalG);
+  println(totalB);
+  //SET PIXELS TO AVG COLOR PIXEL RGB
+  for (int x = 0; x < width; x++)
+  {
+    for (int y = 0; y < height; y++)
+    {
+      color c = get(x, y);
+      if (!(c == white))
+      {
+        set(x, y, avg);
+      }
+    }
+  }
+  println("DONE");
+  pg.endDraw();
+  image(pg, width, height);
+  save("save1.png");
+  background(255);
+}
+
+void run2() {
+  pg.beginDraw();
+  image(tree, 0, 0, width, height);
+  float totalR = red((tree.pixels[width/2]));
+  float totalG = green((tree.pixels[tree.width]));
+  float totalB = blue((tree.pixels[tree.width]));
+  int count = 0;
+  for (int i = 0; i < tree.width; i+=1) 
+  {
+    for (int j = 0; j < tree.height; j+=1)
+    {  
+      color c = get(i, j);
+      if (!(c == white))
+      {
+        r = red(c);
+        g = green(c);
+        b = blue(c);
+        totalR = (totalR + r);
+        totalG = (totalG + g);
+        totalB = (totalB + b);
+        count++;
+      }
+    }
+  }
+  totalR = (totalR / count);
+  totalG = (totalG / count);
+  totalB = (totalB / count);
+  color avg = color(totalR + random(25), totalG + random(25), totalB + random(25));
+  println(totalR);
+  println(totalG);
+  println(totalB);
+  //SET PIXELS TO AVG COLOR PIXEL RGB
+  for (int x = 0; x < width; x++)
+  {
+    for (int y = 0; y < height; y++)
+    {
+      color c = get(x, y);
+      if (!(c == white))
+      {
+        set(x, y, avg);
+      }
+    }
+  }
+  println("DONE2");
+  pg.endDraw();
+  image(pg, width, height);
+  save("save2.png");
+  background(255);
+}
+void run3() {
+  pg.beginDraw();
+  image(tree, 0, 0, width, height);
+  float totalR = red((tree.pixels[width/2]));
+  float totalG = green((tree.pixels[tree.width]));
+  float totalB = blue((tree.pixels[tree.width]));
+  int count = 0;
+  for (int i = 0; i < tree.width; i+=1) 
+  {
+    for (int j = 0; j < tree.height; j+=1)
+    {  
+      color c = get(i, j);
+      if (!(c == white))
+      {
+        r = red(c);
+        g = green(c);
+        b = blue(c);
+        totalR = (totalR + r);
+        totalG = (totalG + g);
+        totalB = (totalB + b);
+        count++;
+      }
+    }
+  }
+  totalR = (totalR / count);
+  totalG = (totalG / count);
+  totalB = (totalB / count);
+  color avg = color(totalR + random(25), totalG + random(25), totalB + random(25));
+  println(totalR);
+  println(totalG);
+  println(totalB);
+  //SET PIXELS TO AVG COLOR PIXEL RGB
+  for (int x = 0; x < width; x++)
+  {
+    for (int y = 0; y < height; y++)
+    {
+      color c = get(x, y);
+      if (!(c == white))
+      {
+        set(x, y, avg);
+      }
+    }
+  }
+  println("DONE3");
+  pg.endDraw();
+  image(pg, width, height);
+  save("save3.png");
+  background(255);
+}
